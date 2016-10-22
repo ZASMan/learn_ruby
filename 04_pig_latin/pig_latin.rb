@@ -21,18 +21,44 @@ def consonant(word)
 	#move the first letter to the end of the word, and then add "ay"
 	#to the end
 	consonants = ["B", "C", "D", "F", "G","H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "X", "Z"] 
-	if not vowels.include(word[0]) 
-
-
+	if consonants.include?(word[0])
+		true
+	else
+		false
+	end
+end
 
 def translate(word)
 
 	if vowel?(word)
-		#If this is true,  move firs tletter to end of word and add 'ay' to
-		#end of word
-		first_letter = word[0]
-		no_first_letter = word[1, word.length]
-		new_word = no_first_letter + first_letter + "ay"
+		#If this is true, add 'ay' to end of the word
+		#first_letter = word[0]
+		#no_first_letter = word[1, word.length]
+		word = word + "ay"
+	#Break the string into an array and puts at least the first three letters
+	#At the end of the word followed by an 'ay'
+	elsif consonant?(word)
+		#First Three Letters are Consonants
+		if consonants.include?(word[0]) and consonants.include?(word[1]) and consonants.include?(word[2])
+			first_letter = word[0]
+			second_letter = word[1]
+			third_letter = word[2]
+			no_first_three_letters_word = word [1, word.length]
+			word = no_first_three_letters_word + first_letter + second_letter + third_letter + "ay"
+		#First Two Letters are Consonants
+		elsif consonants.include?(word[0]) and consonants.include?(word[1])
+			first_letter = word[0]
+			second_letter = word[1]
+			no_first_two_letters_word = word [2, word.length]
+			word = no_first_two_letters_word + first_letter + second_letter + "ay"
+		#First Letter is Consonant
+		elsif consonants.include?(word[0])
+			first_letter = word[0]
+			no_first_letter_word = word[1, word.length]
+			word = no_first_letter_word + first_letter + "ay"
+		end
+	#Valid String is Not Passed Through
 	else
+		word = "Word must contain begin with a valid letter"
 	end
 end
